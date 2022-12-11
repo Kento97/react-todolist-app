@@ -1,13 +1,20 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import TodoList from "@/components/TodoList";
+import { Col, Row } from "antd";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
-      <img src={reactLogo} title="" alt="" />
-    </div>
+    <Row
+      style={{
+        height: "100vh",
+      }}
+    >
+      <Col span={8} offset={8}>
+        <div>
+          <TodoList />
+        </div>
+      </Col>
+    </Row>
   );
 }
 
