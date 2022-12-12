@@ -11,7 +11,6 @@ function Item(Props: IProps) {
   const { todo, toggleTodo, removeTodo } = Props;
   const { id, content, completed } = todo;
   const onChange = (e: CheckboxChangeEvent) => {
-    // console.log(`checked = ${e.target.checked}`);
     toggleTodo(id);
   };
   return (
@@ -21,6 +20,7 @@ function Item(Props: IProps) {
       </Checkbox>
       <span>{content}</span>
       <Button onClick={() => removeTodo(id)}></Button>
+      <br />
     </>
   );
 }

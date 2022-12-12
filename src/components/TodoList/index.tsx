@@ -1,15 +1,16 @@
-import React, { useCallback, useReducer } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import MyInput from "@/components/TodoList/MyInput";
 import MyList from "@/components/TodoList/MyList";
 import { ACTION_TYPE, IState, ITodo } from "@/types";
 import { todoReducer } from "./reducer";
 function TodoList() {
-  function init(initTodoList: ITodo[]): IState {
+  function init(): IState {
     return {
-      todoList: initTodoList,
+      todoList: [],
     };
   }
   const [state, dispatch] = useReducer(todoReducer, [], init);
+
   const addTodo = useCallback((todo: ITodo) => {
     dispatch({
       type: ACTION_TYPE.ADD_TODO,

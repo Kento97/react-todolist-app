@@ -1,5 +1,5 @@
 import { ITodo } from "@/types";
-import React from "react";
+import { memo } from "react";
 import Item from "./Item";
 interface IProps {
   todoList: ITodo[];
@@ -8,11 +8,12 @@ interface IProps {
 }
 function MyList(props: IProps) {
   const { todoList, removeTodo, toggleTodo } = props;
+  const MemoItem = memo(Item);
   return (
     <div>
-      {todoList &&
+      {!!todoList?.length &&
         todoList.map((todo) => (
-          <Item
+          <MemoItem
             todo={todo}
             toggleTodo={toggleTodo}
             removeTodo={removeTodo}

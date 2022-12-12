@@ -1,12 +1,12 @@
 import { ACTION_TYPE, IAction, IState, ITodo } from "@/types";
 
-export function todoReducer(state: IState, action: IAction) {
+export function todoReducer(state: IState, action: IAction): IState {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPE.ADD_TODO:
       return {
         ...state,
-        todoLIst: [...state.todoList, payload as ITodo],
+        todoList: [...state.todoList, payload as ITodo],
       };
 
     case ACTION_TYPE.REMOVE_TODO:
