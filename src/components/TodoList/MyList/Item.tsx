@@ -19,7 +19,7 @@ function Item(Props: IProps) {
         Checkbox
       </Checkbox>
       <span>{content}</span>
-      <Button onClick={() => removeTodo(id)}></Button>
+      <Button onClick={() => removeTodo(id)}>删除</Button>
       <br />
     </>
   );

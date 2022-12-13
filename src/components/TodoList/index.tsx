@@ -3,16 +3,18 @@ import MyInput from "@/components/TodoList/MyInput";
 import MyList from "@/components/TodoList/MyList";
 import { ACTION_TYPE, IState, ITodo } from "@/types";
 import { todoReducer } from "./reducer";
+import { useImmerReducer } from "use-immer";
+
 function TodoList() {
   function init(): IState {
     const localTodoList: ITodo[] | null = JSON.parse(
-      localStorage.getItem("todoList")
+      localStorage.getItem("todoList") as string
     );
     return {
       todoList: localTodoList ?? [],
     };
   }
-  const [state, dispatch] = useReducer(todoReducer, [], init);
+  const [state, dispatch] = useImmerReducer(todoReducer, [], init);
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(state.todoList));
   }, [state]);
