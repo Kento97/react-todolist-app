@@ -1,15 +1,21 @@
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useMemo, useReducer, useEffect } from "react";
 import MyInput from "@/components/TodoList/MyInput";
 import MyList from "@/components/TodoList/MyList";
 import { ACTION_TYPE, IState, ITodo } from "@/types";
 import { todoReducer } from "./reducer";
 function TodoList() {
   function init(): IState {
+    const localTodoList: ITodo[] | null = JSON.parse(
+      localStorage.getItem("todoList")
+    );
     return {
-      todoList: [],
+      todoList: localTodoList ?? [],
     };
   }
   const [state, dispatch] = useReducer(todoReducer, [], init);
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(state.todoList));
+  }, [state]);
 
   const addTodo = useCallback((todo: ITodo) => {
     dispatch({
